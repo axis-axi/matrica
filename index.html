@@ -922,6 +922,20 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
   .matrix-app .mx-matrix.is-anim .mx-glyph,
   .matrix-app.has-reveal .mx-result .mx-sec{ opacity:1 !important; }
 }
+
+/*OTZYVY-CSS*/
+.mx-rv{margin-top:62px;}
+.mx-rv-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
+.mx-rv-h h2{font-family:var(--mx-serif,Georgia,serif);font-weight:500;color:var(--mx-wine,#5E1A1E);margin:0;font-size:clamp(22px,3.4vw,30px);}
+.mx-rv-note{font-size:12px;color:var(--mx-ink2,#7C6B5C);}
+.mx-rv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px;}
+.mx-rv-card{margin:0;background:var(--mx-card,#FCF8F1);border:1px solid var(--mx-line,#DCCBAA);border-left:3px solid var(--mx-gold,#C6A15B);padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0;}
+.mx-rv-card blockquote{margin:0;font-size:14px;line-height:1.6;color:var(--mx-ink,#3A2A22);}
+.mx-rv-card figcaption{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mx-gold-dp,#A8823C);margin-top:auto;}
+.mx-rv-more>summary{cursor:pointer;list-style:none;display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mx-wine,#5E1A1E);border:1px solid var(--mx-gold,#C6A15B);padding:9px 14px;margin-top:16px;}
+.mx-rv-more>summary::-webkit-details-marker{display:none}
+.mx-rv-more>summary:focus-visible{outline:2px solid var(--mx-gold,#C6A15B);outline-offset:2px}
+.mx-rv-disc{font-size:11.5px;color:var(--mx-ink2,#7C6B5C);margin:14px 0 0;}
 </style>
 </head>
 <body>
@@ -1212,6 +1226,15 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 
     <!-- Блок автора. Стоит вне результата, поэтому виден и до расчёта.
          Цифры в плашках и текст замените на свои. -->
+
+    <!--OTZYVY-->
+    <section class="mx-rv" id="mx-reviews">
+      <div class="mx-rv-h"><h2>Что говорят ученицы курса</h2><div class="mx-rv-note">Курс по Матрице судьбы</div></div>
+      <div class="mx-rv-grid"><figure class="mx-rv-card"><blockquote>Я пробовала заняться нумерологией с другим коучем, но поняла, что просто этот учитель мне не подходит. Но мое желание разобраться в Матрице было таким сильным, что Высшие силы вывели меня на Вас. И я очень этому рада! Вы так хорошо умеете донести информацию, вдохновить и поверить в свои силы … Сейчас, изучая Матрицу, понимаю, что метод намного глубже и помогает проработать все аспекты жизни.</blockquote><figcaption>Анастасия, ученица курса</figcaption></figure><figure class="mx-rv-card"><blockquote>Курс очень интересный и информативный. Преподнесение информации на высшем уровне! Несмотря на то, что ранее я уже изучала Матрицу, почерпнула для себя новую информацию.</blockquote><figcaption>Ученица курса</figcaption></figure><figure class="mx-rv-card"><blockquote>Ваш курс мне очень понравился, столько информации, и доп. материалы платные для продвинутых тоже крутые.</blockquote><figcaption>Ученица курса</figcaption></figure></div>
+      <details class="mx-rv-more"><summary>Ещё отзывы</summary><div class="mx-rv-grid"><figure class="mx-rv-card"><blockquote>Благодарю вас за обучение! Очень много полезной информации в очень доступном формате. Было безумно интересно слушать вас и подгружаться в эту сферу!</blockquote><figcaption>Ученица курса</figcaption></figure></div></details>
+      
+    </section>
+
     <section class="mx-author" id="mx-me">
       <div class="mx-author-photo" role="img" aria-label="Надежда Кухтина"></div>
       <div class="mx-author-body">
