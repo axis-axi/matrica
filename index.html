@@ -936,6 +936,38 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 .mx-rv-more>summary::-webkit-details-marker{display:none}
 .mx-rv-more>summary:focus-visible{outline:2px solid var(--mx-gold,#C6A15B);outline-offset:2px}
 .mx-rv-disc{font-size:11.5px;color:var(--mx-ink2,#7C6B5C);margin:14px 0 0;}
+
+/* ==== ГЛАВНЫЙ САЙТ: разборы и контакты ==== */
+.matrix-app .mx-block{margin-top:72px;}
+.matrix-app .mx-price-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.matrix-app .mx-pg{padding:22px;background:var(--mx-card);box-shadow:inset 0 0 0 1px var(--mx-hair);min-width:0;}
+.matrix-app .mx-pg h3{font-size:20px;color:var(--mx-wine);margin-bottom:12px;}
+.matrix-app .mx-pg-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--mx-hair);font-size:14px;}
+.matrix-app .mx-pg-row:first-of-type{border-top:0;}
+.matrix-app .mx-pg-row small{display:block;font-size:12px;color:var(--mx-ink2);margin-top:3px;}
+.matrix-app .mx-pg-row b{font-family:var(--mx-serif);font-weight:600;color:var(--mx-wine);white-space:nowrap;}
+.matrix-app .mx-pg .mx-btn{margin-top:14px;}
+.matrix-app .mx-pg-note{font-size:13px;color:var(--mx-ink2);margin-top:16px;}
+.matrix-app .mx-pg-note a{color:var(--mx-wine);}
+.matrix-app .mx-contacts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+.matrix-app .mx-ct{display:block;padding:16px 18px;background:var(--mx-card);box-shadow:inset 0 0 0 1px var(--mx-hair);text-decoration:none;color:var(--mx-ink) !important;min-width:0;}
+.matrix-app .mx-ct:hover{box-shadow:inset 0 0 0 1px var(--mx-gold);}
+.matrix-app .mx-ct span{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mx-gold-dp);margin-bottom:5px;}
+.matrix-app .mx-ct b{font-weight:500;font-size:14px;word-break:break-word;}
+.matrix-app .mx-contacts-wrap{padding-bottom:48px;}
+.matrix-app .mx-freebie{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;padding:24px;background:var(--mx-card);box-shadow:inset 0 0 0 1px var(--mx-hair);}
+.matrix-app .mx-freebie-cover{aspect-ratio:3/4;max-width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;background:linear-gradient(150deg,#7A2A2E 0%,#5E1A1E 55%,#3B0E12 100%);color:#F3E3C6;position:relative;padding:16px;}
+.matrix-app .mx-freebie-cover:before{content:"";position:absolute;inset:7px;border:1px solid rgba(231,211,168,.35);}
+.matrix-app .mx-freebie-cover span{font-family:var(--mx-serif);font-size:30px;}
+.matrix-app .mx-freebie-cover b{font-family:var(--mx-script);font-weight:400;font-size:26px;color:#E7D3A8;}
+.matrix-app .mx-freebie-cover i{font-style:normal;color:var(--mx-gold);margin-top:8px;}
+.matrix-app .mx-freebie-body{min-width:0;}
+.matrix-app .mx-tile-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mx-gold-dp);}
+.matrix-app .mx-freebie h3{font-size:26px;color:var(--mx-wine);margin:8px 0 10px;}
+.matrix-app .mx-freebie p{font-size:14px;line-height:1.65;margin:0 0 18px;max-width:560px;}
+@media (max-width:640px){ .matrix-app .mx-freebie{grid-template-columns:1fr;padding:20px;} .matrix-app .mx-freebie-cover{max-width:180px;margin:0 auto;} }
+.matrix-app .mx-rv-disc{font-size:11.5px;color:var(--mx-ink2);margin:14px 0 0;}
+@media (max-width:640px){ .matrix-app .mx-block{margin-top:54px;} }
 </style>
 </head>
 <body>
@@ -969,12 +1001,12 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
         <div class="mx-logo-sub">Матрица судьбы</div>
       </div>
       <nav class="mx-nav">
-        <a href="#mx-about">О матрице</a>
         <a href="#mx-calc">Расчёт</a>
-        <a href="#mx-decode">Расшифровки</a>
         <a href="#mx-club-info">Клуб</a>
+        <a href="#mx-free">Бесплатно</a>
+        <a href="#mx-paid">Разборы и консультации</a>
         <a href="#mx-me">Обо мне</a>
-        <a href="https://t.me/nadin_matrix" target="_blank" rel="noopener">Телеграм</a>
+        <a href="#mx-contacts">Контакты</a>
       </nav>
     </div>
 
@@ -1224,6 +1256,54 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
       </div>
     </section>
 
+    <!-- Бесплатные материалы. Карта денежных блоков разрешена Надеждой 2026-11-13.
+         Техника притяжения клиентов сюда не идёт: она подарок в боте -->
+    <section class="mx-block" id="mx-free">
+      <div class="mx-sec-h"><h2>Бесплатные материалы</h2><div class="mx-sec-note">Можно скачать и пройти самостоятельно</div></div>
+      <div class="mx-rule"></div>
+      <div class="mx-freebie">
+        <div class="mx-freebie-cover" aria-hidden="true"><span>Карта</span><b>денежных блоков</b><i>&#10022;</i></div>
+        <div class="mx-freebie-body">
+          <div class="mx-tile-tag">Психологическая диагностика &middot; PDF, 14 страниц</div>
+          <h3>Карта денежных блоков</h3>
+          <p>9 вопросов, которые покажут, что мешает зарабатывать легко, спокойно и без надрыва. Понадобится 15-20 минут, ручка и тишина</p>
+          <a class="mx-btn" href="karta-denezhnyh-blokov.pdf" target="_blank" rel="noopener">Скачать карту бесплатно</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Платное: только подтверждённые цены (решение Надежды 2026-11-12) -->
+    <section class="mx-block" id="mx-paid">
+      <div class="mx-sec-h"><h2>Разборы и консультации</h2><div class="mx-sec-note">Когда хочется глубже, чем даёт бесплатный расчёт</div></div>
+      <div class="mx-rule"></div>
+      <div class="mx-price-groups">
+        <div class="mx-pg">
+          <h3>Разборы по матрице</h3>
+          <div class="mx-pg-row"><div>Матрица года<small>PDF-разбор</small></div><b>999 ₽</b></div>
+          <div class="mx-pg-row"><div>Совместимость<small>PDF-разбор пары</small></div><b>999 ₽</b></div>
+          <div class="mx-pg-row"><div>Денежный разбор<small>PDF-разбор</small></div><b>999 ₽</b></div>
+          <div class="mx-pg-row"><div>Марафон Совместимость<small>групповой формат</small></div><b>997 ₽</b></div>
+          <a class="mx-btn mx-btn-ghost" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Заказать разбор</a>
+        </div>
+        <div class="mx-pg">
+          <h3>Личная работа</h3>
+          <div class="mx-pg-row"><div>Нейропроработка финансов<small>2 часа: работа с бессознательным и телом, к корню денежных блоков</small></div><b>999 ₽</b></div>
+          <div class="mx-pg-row"><div>Диагностика<small>до 30 минут онлайн: причина запроса, блоки, план</small></div><b>3 000 ₽</b></div>
+          <div class="mx-pg-row"><div>Сессия по Методу быстрых трансформаций<small>1 час онлайн, есть рассрочка</small></div><b>6 000 ₽</b></div>
+          <div class="mx-pg-row"><div>Наставничество<small>месяц, 5 сессий, поддержка в мессенджере, есть рассрочка</small></div><b>40 000 ₽</b></div>
+          <a class="mx-btn mx-btn-ghost" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Записаться</a>
+        </div>
+      </div>
+      <p class="mx-pg-note">Запись и вопросы в личке <a href="https://t.me/nadyakuht" target="_blank" rel="noopener">@nadyakuht</a>. Все услуги с подробностями в канале <a href="https://t.me/uslugikuhtina" target="_blank" rel="noopener">Услуги, меняющие реальность</a></p>
+    </section>
+
+    <section class="mx-rv" id="mx-reviews-clients">
+      <div class="mx-rv-h"><h2>Что говорят клиентки</h2><div class="mx-rv-note">Сессии, разборы и клуб</div></div>
+      <div class="mx-rv-grid"><figure class="mx-rv-card"><blockquote>Хочу оставить тебе отзыв после твоей терапии. Работали с темой денег, терапия была мощной, огромное количество блоков сняли и спустя неделю вижу первые плоды. Много энергии забирали кредитки и кредит, несколько месяцев пыталась сделать рефинансирование кредитов, не получалось, а тут в один момент и с выгодным процентом. Стало гораздо внутри спокойнее … Стала увереннее говорить и предлагать свои услуги, не бояться отказываться, перестала обесценивать свои знания и время … Ты потрясающий проводник, очень тонко чувствуешь и ведешь процесс.</blockquote><figcaption>Клиентка, терапия по теме денег</figcaption></figure><figure class="mx-rv-card"><blockquote>После нашей сессии, когда мы работали с моей программой «что смысл что-то иметь если всё равно заберут или придётся делиться», произошло следующее: муж дал денег на празднование дня рождения младшему сыну, почти половину праздника оплатил … И я сама стала без облома говорить: едем, празднуем вместе, давай помогай мне. И муж спокойно помогает. И я смотрю и понимаю, что реально жизнь моя меняется!</blockquote><figcaption>Клиентка, сессия</figcaption></figure><figure class="mx-rv-card"><blockquote>От всей души благодарю вас за разбор годовой матрицы. Но особенно меня восхитила информация по моему личному году. Такой большой объем информации, что на его осознание и принятие мне понадобилось 2 месяца. Невероятно ценно и важно для меня! Вы однозначно занимаетесь своим делом, несёте свет в этот мир.</blockquote><figcaption>Клиентка, разбор годовой матрицы</figcaption></figure></div>
+      <details class="mx-rv-more"><summary>Ещё отзывы</summary><div class="mx-rv-grid"><figure class="mx-rv-card"><blockquote>Благодарю Вас за подкасты о расхламлении. Я состою в клубе довольно известного психолога и проходила там недельный марафон по данной теме. Но ваши 2 аудио по пользе и глубине несопоставимо обширнее. После прослушивания первой части вступила в Ваш клуб.</blockquote><figcaption>Участница клуба</figcaption></figure><figure class="mx-rv-card"><blockquote>Благодарю Вас за Ваш Клуб! Это очень нужное место, как тихая гавань, где ты без надрыва и гонки проживаешь каждую тему! Где есть ответы на твои вопросы, где тебе ответят понятным языком. Это что-то нереальное!</blockquote><figcaption>Участница клуба</figcaption></figure></div></details>
+      <p class="mx-rv-disc">Результаты индивидуальны и не являются гарантией.</p>
+    </section>
+
     <!-- Блок автора. Стоит вне результата, поэтому виден и до расчёта.
          Цифры в плашках и текст замените на свои. -->
 
@@ -1250,11 +1330,23 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
           <div class="mx-fact"><b>6+</b><span>лет в практике</span></div>
           <div class="mx-fact"><b>2000+</b><span>учеников</span></div>
           <div class="mx-fact"><b>300+</b><span>личных консультаций</span></div>
+          <div class="mx-fact"><b>3</b><span>клиенты из РФ, Европы и США</span></div>
         </div>
         <div class="mx-author-btns">
           <a class="mx-btn" href="https://tochka-opory.lpxl.ru/podpiska" target="_blank" rel="noopener">Забрать доступ в клуб</a>
           <a class="mx-btn mx-btn-ghost mx-tg" href="https://t.me/nadin_matrix" target="_blank" rel="noopener">Мой телеграм @nadin_matrix</a>
         </div>
+      </div>
+    </section>
+    <section class="mx-block mx-contacts-wrap" id="mx-contacts">
+      <div class="mx-sec-h"><h2>Контакты</h2><div class="mx-sec-note">Всё живёт в Telegram</div></div>
+      <div class="mx-rule"></div>
+      <div class="mx-contacts">
+        <a class="mx-ct" href="https://t.me/nadin_matrix" target="_blank" rel="noopener"><span>Канал</span><b>Психология и эзотерика @nadin_matrix</b></a>
+        <a class="mx-ct" href="https://t.me/nadyakuht" target="_blank" rel="noopener"><span>Личка для записи</span><b>@nadyakuht</b></a>
+        <a class="mx-ct" href="https://t.me/uslugikuhtina" target="_blank" rel="noopener"><span>Услуги</span><b>Услуги, меняющие реальность</b></a>
+        <a class="mx-ct" href="https://t.me/nadin_otzv" target="_blank" rel="noopener"><span>Отзывы</span><b>@nadin_otzv</b></a>
+        <a class="mx-ct" href="https://t.me/nadi_zabota" target="_blank" rel="noopener"><span>Служба заботы</span><b>@nadi_zabota</b></a>
       </div>
     </section>
   </div><!-- /wrap -->
