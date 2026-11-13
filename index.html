@@ -974,6 +974,28 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 @media (max-width:640px){ .matrix-app .mx-freebie{grid-template-columns:1fr;padding:20px;} .matrix-app .mx-freebie-cover{max-width:180px;margin:0 auto;} }
 .matrix-app .mx-rv-disc{font-size:11.5px;color:var(--mx-ink2);margin:14px 0 0;}
 @media (max-width:640px){ .matrix-app .mx-block{margin-top:54px;} }
+
+/* ==== вкладка Личный бренд и платные предложения после расчёта ==== */
+.matrix-app .mx-br-only{display:none;}
+.matrix-app.is-brend .mx-br-only{display:block;}
+.matrix-app.is-brend .mx-hero > div > .mx-form,
+.matrix-app.is-brend #mxErr,
+.matrix-app.is-brend #mxResult{display:none !important;}
+.matrix-app.is-brend #brResult{display:none;}
+.matrix-app.is-brend #brResult.is-on{display:block;}
+.matrix-app #brForm .mx-form{grid-template-columns:1fr auto;}
+.matrix-app .mx-guilt{margin:0 0 14px;padding:14px 16px;background:var(--mx-bg2);box-shadow:inset 0 0 0 1px var(--mx-hair);font-size:13px;color:var(--mx-ink);}
+.matrix-app .mx-br-again{display:inline-block;margin-top:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mx-wine);border:0;border-bottom:1px solid var(--mx-gold);cursor:pointer;background:none;padding:0 0 2px;font-family:var(--mx-sans);}
+.matrix-app .mx-offer{margin-top:28px;}
+.matrix-app .mx-offer + .mx-offer{margin-top:12px;}
+.matrix-app.is-pair .mx-offer-single{display:none;}
+.matrix-app:not(.is-pair) .mx-offer-pair{display:none;}
+.matrix-app .mx-offer-cap{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mx-gold-dp);margin:34px 0 0;}
+@media (max-width:640px){
+  .matrix-app .mx-tabs{width:100%;}
+  .matrix-app .mx-tab{flex:1 1 33.33%;padding:12px 6px;font-size:10px;letter-spacing:.1em;}
+  .matrix-app #brForm .mx-form{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -1028,6 +1050,7 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
         <div class="mx-tabs">
           <button type="button" class="mx-tab is-on" data-mode="single">Личная матрица</button>
           <button type="button" class="mx-tab" data-mode="pair">Совместимость</button>
+          <button type="button" class="mx-tab mx-tab-br">Личный бренд</button>
         </div>
 
         <div class="mx-form">
@@ -1048,6 +1071,19 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
           <button type="button" class="mx-btn" id="mxGo">Рассчитать матрицу</button>
         </div>
         <div class="mx-err" id="mxErr"></div>
+        <div class="mx-br-only" id="brForm">
+          <div class="mx-form">
+            <div class="mx-fieldwrap">
+              <span class="mx-fcap">Ваша дата рождения</span>
+              <label class="mx-field">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                <input type="text" id="brDate" inputmode="numeric" autocomplete="bday" placeholder="ДД . ММ . ГГГГ" maxlength="10" aria-label="Дата рождения">
+              </label>
+            </div>
+            <button type="button" class="mx-btn" id="brGo">Узнать энергию бренда</button>
+          </div>
+          <div class="mx-err" id="brErr" role="alert"></div>
+        </div>
         <div class="mx-safe">
           <svg viewBox="0 0 24 24"><path d="M12 2.6l7.6 3v6c0 4.6-3.1 8.5-7.6 9.8-4.5-1.3-7.6-5.2-7.6-9.8v-6l7.6-3z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></svg>
           Расчёт выполняется в вашем браузере. Дата рождения никуда не отправляется.
@@ -1171,6 +1207,27 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
     </div>
 
     <!-- ================= РЕЗУЛЬТАТ ================= -->
+<!-- Результат вкладки Личный бренд: точка А, тексты MX_ARCANA и трактовки -->
+    <div class="mx-result mx-br-only" id="brResult">
+      <div class="mx-sec is-in">
+        <div class="mx-sec-h"><h2>Энергия личного бренда</h2><div class="mx-sec-note" id="brDateNote"></div></div>
+        <div class="mx-rule"></div>
+        <div class="mx-main-energy" id="brMain"></div>
+        <div class="mx-two" id="brTwo"></div>
+      </div>
+      <div class="mx-sec is-in">
+        <div class="mx-sec-h"><h2>Урок вашей энергии</h2><div class="mx-sec-note">Над чем работать, чтобы бренд звучал в полную силу</div></div>
+        <div class="mx-rule"></div>
+        <div class="mx-two" id="brLesson"></div>
+        <div class="mx-offer-cap">Следующий шаг</div>
+        <div class="mx-cl-terms mx-offer">
+          <p><b>Полный разбор личного бренда</b>Как вас видят люди, что показывать в блоге, темы и действия, палитра и стиль одежды, а для денежных запросов стражник и опоры. Готовый файл PDF или Word</p>
+          <a class="mx-btn" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Заказать разбор</a>
+        </div>
+        <button type="button" class="mx-br-again" id="brAgain">Посчитать другую дату</button>
+      </div>
+    </div>
+
     <div class="mx-result" id="mxResult">
 
       <div class="mx-sec" id="mx-decode">
@@ -1243,6 +1300,20 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
         и финансовых гарантий. Расчёт выполняется в браузере: дата рождения не передаётся на сервер и нигде не сохраняется.
       </div>
 
+      <!-- Платное предложение после бесплатного расчёта: своё для личной матрицы и для совместимости -->
+      <div class="mx-offer-cap">Следующий шаг</div>
+      <div class="mx-cl-terms mx-offer mx-offer-single">
+        <p><b>Разбор Матрица года, 999 ₽</b>Готовый PDF-разбор вашего года по матрице судьбы</p>
+        <a class="mx-btn" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Заказать разбор</a>
+      </div>
+      <div class="mx-cl-terms mx-offer mx-offer-pair">
+        <p><b>Разбор совместимости, 999 ₽</b>Готовый PDF-разбор вашей пары по матрице судьбы</p>
+        <a class="mx-btn" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Заказать разбор</a>
+      </div>
+      <div class="mx-cl-terms mx-offer mx-offer-pair">
+        <p><b>Марафон Совместимость, 997 ₽</b>Групповой формат: разбираем отношения по матрице вместе</p>
+        <a class="mx-btn" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Записаться на марафон</a>
+      </div>
     </div><!-- /result -->
 
     <!-- Раздел про клуб. Текст черновой, состав взят из базы знаний клуба -->
@@ -2528,7 +2599,7 @@ function setMode(mode){
   $('mxH2').textContent = t.h2; $('mxN2').textContent = t.n2;
   $('mxH3').textContent = t.h3; $('mxN3').textContent = t.n3;
   $('mxGo').textContent = t.btn;
-  Array.prototype.forEach.call(document.querySelectorAll('.matrix-app .mx-tab'), function(b){
+  Array.prototype.forEach.call(document.querySelectorAll('.matrix-app .mx-tab[data-mode]'), function(b){
     b.classList.toggle('is-on', b.getAttribute('data-mode') === mode);
   });
   /* прошлый результат относится к другому режиму — прячем */
@@ -2537,7 +2608,7 @@ function setMode(mode){
   current = null;
   fitTilda();
 }
-Array.prototype.forEach.call(document.querySelectorAll('.matrix-app .mx-tab'), function(b){
+Array.prototype.forEach.call(document.querySelectorAll('.matrix-app .mx-tab[data-mode]'), function(b){
   b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode')); });
 });
 
@@ -2661,5 +2732,70 @@ window.addEventListener('load', fitTilda);
 })();
 </script>
 
+<script>
+/* ==== Вкладка Личный бренд: точка А = день рождения, свёрнутый до 22, из ядра MX без изменений ==== */
+(function(){
+"use strict";
+var MX = window.MX; if(!MX){ console.error('Личный бренд: нет ядра MX'); return; }
+function $(id){ return document.getElementById(id); }
+var app = $('matrixApp'), tabBr = document.querySelector('.matrix-app .mx-tab-br');
+if(!app || !tabBr) return;
+function paras(arr){ var h=''; for(var i=0;i<(arr||[]).length;i++) h+='<p>'+MX.esc(arr[i])+'</p>'; return h; }
+function first(arr){ return (arr && arr.length) ? '<p>'+MX.esc(arr[0])+'</p>' : ''; }
+function rest(arr){ return (arr && arr.length > 1) ? paras(arr.slice(1)) : ''; }
+function more(html){ return html ? '<details class="mx-more"><summary>Читать подробнее</summary><div class="mx-more-b">'+html+'</div></details>' : ''; }
+function setTabs(br){
+  app.classList.toggle('is-brend', br);
+  tabBr.classList.toggle('is-on', br);
+  Array.prototype.forEach.call(document.querySelectorAll('.matrix-app .mx-tab[data-mode]'), function(b){
+    if(br) b.classList.remove('is-on');
+  });
+}
+tabBr.addEventListener('click', function(){ setTabs(true); $('mxResult').classList.remove('is-on'); });
+Array.prototype.forEach.call(document.querySelectorAll('.matrix-app .mx-tab[data-mode]'), function(b){
+  b.addEventListener('click', function(){ setTabs(false); $('brResult').classList.remove('is-on'); });
+});
+var input = $('brDate'), err = $('brErr'), res = $('brResult');
+input.addEventListener('input', function(){
+  var v = this.value.replace(/\D/g,'').slice(0,8), o = v.slice(0,2);
+  if(v.length > 2) o += '.' + v.slice(2,4);
+  if(v.length > 4) o += '.' + v.slice(4,8);
+  this.value = o;
+});
+function parse(str){
+  var m = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(String(str).trim());
+  if(!m) return 'Введите дату в формате ДД.ММ.ГГГГ, например 07.04.1991';
+  var d = +m[1], mo = +m[2], y = +m[3], dt = new Date(y, mo-1, d);
+  if(dt.getDate() !== d || dt.getMonth() !== mo-1 || dt.getFullYear() !== y) return 'Такой даты нет в календаре, проверьте день и месяц';
+  return {day:d, mon:mo, year:y};
+}
+function run(){
+  err.textContent = '';
+  var p = parse(input.value);
+  if(typeof p === 'string'){ err.textContent = p; return; }
+  var M = MX.calculateMatrix(p.day, p.mon, p.year), n = M.a, A = MX.arcana(n);
+  $('brDateNote').textContent = 'Дата рождения ' + MX.pad(p.day) + '.' + MX.pad(p.mon) + '.' + p.year;
+  $('brMain').innerHTML = '<div class="mx-me-disc">' + n + '</div><div class="mx-me-body">'
+    + '<div class="mx-card-cap">Энергия личного бренда &middot; точка А</div>'
+    + '<div class="mx-me-name">' + MX.esc(A.n) + '</div>'
+    + '<div class="mx-me-txt">' + MX.esc(A.s) + '</div>'
+    + (A.aw ? '<div class="mx-me-boost"><b>Как проявляться</b>' + MX.esc(A.aw) + '</div>' : '') + '</div>';
+  $('brTwo').innerHTML = '<div class="mx-card"><div class="mx-card-cap">Как вас считывают с первого взгляда</div><div class="mx-card-txt">' + MX.esc(A.a) + '</div></div>'
+    + '<div class="mx-card"><div class="mx-card-cap">Когда энергия звучит в плюсе</div><div class="mx-card-txt">' + first(A.f_pl) + '</div>' + more(rest(A.f_pl)) + '</div>';
+  $('brLesson').innerHTML = '<div class="mx-card"><div class="mx-card-cap">Какой урок несёт эта энергия</div>'
+    + '<div class="mx-guilt">Если что-то здесь отзывается, с вами всё в порядке. Это задача энергии, и с ней можно работать.</div>'
+    + '<div class="mx-card-txt">' + first(A.f_l) + '</div>' + more(rest(A.f_l)) + '</div>'
+    + '<div class="mx-card"><div class="mx-card-cap">К чему прийти</div><div class="mx-card-txt">' + first(A.f_t) + '</div>' + more(rest(A.f_t)) + '</div>';
+  res.classList.add('is-on');
+  setTimeout(function(){ window.scrollTo({top: res.getBoundingClientRect().top + window.pageYOffset - 20, behavior:'smooth'}); }, 60);
+}
+$('brGo').addEventListener('click', run);
+input.addEventListener('keydown', function(e){ if(e.key === 'Enter') run(); });
+$('brAgain').addEventListener('click', function(){
+  res.classList.remove('is-on'); input.value = ''; input.focus();
+  window.scrollTo({top: $('mx-calc').getBoundingClientRect().top + window.pageYOffset - 20, behavior:'smooth'});
+});
+})();
+</script>
 </body>
 </html>
