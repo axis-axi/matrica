@@ -962,6 +962,12 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 .matrix-app .mx-freebie-cover b{font-family:var(--mx-script);font-weight:400;font-size:26px;color:#E7D3A8;}
 .matrix-app .mx-freebie-cover i{font-style:normal;color:var(--mx-gold);margin-top:8px;}
 .matrix-app .mx-freebie-body{min-width:0;}
+.matrix-app .mx-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:16px;}
+.matrix-app .mx-tile{display:flex;flex-direction:column;gap:8px;padding:22px 22px 20px;background:var(--mx-card);box-shadow:inset 0 0 0 1px var(--mx-hair);text-decoration:none;color:var(--mx-ink) !important;transition:box-shadow .25s ease, transform .25s ease;min-width:0;}
+.matrix-app .mx-tile:hover{box-shadow:inset 0 0 0 1px var(--mx-gold), 0 10px 26px -18px rgba(59,14,18,.45);transform:translateY(-2px);}
+.matrix-app .mx-tile h3{font-size:21px;color:var(--mx-wine);text-wrap:balance;}
+.matrix-app .mx-tile p{margin:0;font-size:13px;line-height:1.6;color:var(--mx-ink2);flex:1;}
+.matrix-app .mx-tile-go{margin-top:6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mx-wine);}
 .matrix-app .mx-tile-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mx-gold-dp);}
 .matrix-app .mx-freebie h3{font-size:26px;color:var(--mx-wine);margin:8px 0 10px;}
 .matrix-app .mx-freebie p{font-size:14px;line-height:1.65;margin:0 0 18px;max-width:560px;}
@@ -1259,7 +1265,7 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
     <!-- Бесплатные материалы. Карта денежных блоков разрешена Надеждой 2026-11-13.
          Техника притяжения клиентов сюда не идёт: она подарок в боте -->
     <section class="mx-block" id="mx-free">
-      <div class="mx-sec-h"><h2>Бесплатные материалы</h2><div class="mx-sec-note">Можно скачать и пройти самостоятельно</div></div>
+      <div class="mx-sec-h"><h2>Бесплатные материалы</h2><div class="mx-sec-note">Материалы и калькуляторы, без регистрации</div></div>
       <div class="mx-rule"></div>
       <div class="mx-freebie">
         <div class="mx-freebie-cover" aria-hidden="true"><span>Карта</span><b>денежных блоков</b><i>&#10022;</i></div>
@@ -1269,6 +1275,20 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
           <p>9 вопросов, которые покажут, что мешает зарабатывать легко, спокойно и без надрыва. Понадобится 15-20 минут, ручка и тишина</p>
           <a class="mx-btn" href="karta-denezhnyh-blokov.pdf" target="_blank" rel="noopener">Скачать карту бесплатно</a>
         </div>
+      </div>
+      <div class="mx-tiles">
+        <a class="mx-tile" href="brend/">
+          <span class="mx-tile-tag">Калькулятор &middot; одна дата</span>
+          <h3>Энергия личного бренда</h3>
+          <p>Как вас считывают с первого взгляда, когда ваша энергия звучит в плюсе и какой урок она несёт</p>
+          <span class="mx-tile-go">Посчитать &rarr;</span>
+        </a>
+        <a class="mx-tile" href="para/">
+          <span class="mx-tile-tag">Калькулятор &middot; две даты</span>
+          <h3>Совместимость коротко</h3>
+          <p>Главная энергия пары, точка знакомства и троичный код: для чего вы встретились</p>
+          <span class="mx-tile-go">Посчитать &rarr;</span>
+        </a>
       </div>
     </section>
 
