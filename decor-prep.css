@@ -1,0 +1,30 @@
+/* Заставка «разбор готовится» (только она). */
+/* --- анимация «разбор готовится» --- */
+.dc-prep{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 42%,var(--card,var(--mx-card,#FCF8F1)),var(--bg,var(--mx-bg,#F8F3EA)) 62%,var(--bg2,var(--mx-bg2,#EFE3D2)));
+  opacity:0;animation:dc-prep-in .35s ease forwards}
+.dc-prep.dc-out{animation:dc-prep-out .55s ease forwards}
+@keyframes dc-prep-in{to{opacity:1}}
+@keyframes dc-prep-out{from{opacity:1}to{opacity:0}}
+.dc-prep-in{position:relative;width:min(86vw,420px);text-align:center;padding:10px}
+.dc-ring{position:relative;width:170px;height:170px;margin:0 auto 22px}
+.dc-ring i{position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--gold,var(--mx-gold,#C6A15B));opacity:.8;animation:dc-spin 7s linear infinite}
+.dc-ring i:nth-child(2){inset:16px;border-style:solid;border-color:var(--gold-lt,var(--mx-gold-lt,#E7D3A8));animation-duration:11s;animation-direction:reverse;opacity:.9}
+.dc-ring i:nth-child(3){inset:34px;border-style:dotted;border-width:2px;animation-duration:5s}
+.dc-ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:400;color:var(--gold-dp,var(--mx-gold-dp,#A8823C));
+  animation:dc-core 2.4s ease-in-out infinite;text-shadow:0 0 22px rgba(198,161,91,.55)}
+@keyframes dc-spin{to{transform:rotate(360deg)}}
+@keyframes dc-core{0%,100%{transform:scale(.92) rotate(0)}50%{transform:scale(1.14) rotate(45deg)}}
+.dc-num{position:absolute;font:500 22px 'Playfair Display',Georgia,serif;color:var(--main,var(--mx-wine,#5E1A1E));opacity:0;animation:dc-num 2.4s ease-in-out infinite}
+@keyframes dc-num{0%{opacity:0;transform:translateY(8px) scale(.8)}30%,60%{opacity:.75;transform:none}100%{opacity:0;transform:translateY(-10px) scale(1.1)}}
+.dc-prep-t{font:500 clamp(22px,5.4vw,30px)/1.15 'Playfair Display',Georgia,serif;color:var(--main,var(--mx-wine,#5E1A1E))}
+.dc-prep-s{min-height:24px;margin-top:10px;font:500 11px Montserrat,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dp,var(--mx-gold-dp,#A8823C));transition:opacity .25s ease}
+.dc-prep-s.dc-sw{opacity:0}
+.dc-bar{height:3px;margin:20px auto 0;max-width:260px;background:rgba(198,161,91,.25);overflow:hidden}
+.dc-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold,#C6A15B),var(--gold-dp,#A8823C));animation:dc-fill var(--dc-dur,3000ms) cubic-bezier(.4,.1,.3,1) forwards}
+@keyframes dc-fill{to{width:100%}}
+@media(prefers-reduced-motion:reduce){
+  .dc-ring i,.dc-ring b,.dc-num{animation:none}
+  .dc-ring b{opacity:1}
+  .dc-bar span{animation-duration:.6s}
+}
