@@ -995,15 +995,16 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 
 
 /* ==== главный экран: аватар и схема матрицы вместе ==== */
-.matrix-app .mx-duo-stage{position:relative;max-width:460px;margin:0 auto 78px;}
+.matrix-app .mx-duo-stage{position:relative;max-width:460px;margin:0 auto 96px;}
 .matrix-app .mx-avatar{margin:0;padding:8px;background:var(--mx-card);border:1px solid var(--mx-gold);border-radius:240px 240px 22px 22px;box-shadow:0 44px 70px -44px rgba(94,26,30,.55), inset 0 0 0 1px rgba(255,255,255,.7);}
 .matrix-app .mx-avatar img{display:block;width:100%;height:auto;border-radius:232px 232px 15px 15px;}
-.matrix-app .mx-medal{position:absolute;left:-13%;bottom:-17%;width:58%;aspect-ratio:1/1;border-radius:50%;padding:3.5%;background:radial-gradient(circle at 50% 44%,#fffdf8 0%,#f7ecd9 66%,#efe3d2 100%);border:1px solid rgba(198,161,91,.75);box-shadow:0 28px 50px -24px rgba(94,26,30,.6), inset 0 0 0 6px rgba(255,255,255,.75);}
+.matrix-app .mx-medal{position:absolute;left:-9%;bottom:-19%;width:50%;aspect-ratio:1/1;border-radius:50%;padding:3.5%;background:radial-gradient(circle at 50% 44%,#fffdf8 0%,#f7ecd9 66%,#efe3d2 100%);border:1px solid rgba(198,161,91,.75);box-shadow:0 28px 50px -24px rgba(94,26,30,.6), inset 0 0 0 6px rgba(255,255,255,.75);}
 .matrix-app .mx-medal svg{max-width:none;}
-.matrix-app .mx-hero-duo .mx-demo-cap{text-align:center;}
+.matrix-app .mx-hero-duo .mx-demo-cap{text-align:right;padding-left:46%;margin-top:6px;}
 @media (max-width:900px){
   .matrix-app .mx-duo-stage{max-width:380px;margin-bottom:70px;}
-  .matrix-app .mx-medal{left:-5%;bottom:-15%;width:54%;}
+  .matrix-app .mx-medal{left:-4%;bottom:-17%;width:48%;}
+  .matrix-app .mx-hero-duo .mx-demo-cap{padding-left:44%;}
 }
 /* ==== выбор пола: показываем человеку только его трактовки ==== */
 .matrix-app .mx-gen{display:inline-flex;align-items:center;gap:0;margin-top:16px;font-size:12px;color:var(--mx-ink);}
