@@ -1,6 +1,6 @@
 /* Заставка «разбор готовится» (только она). */
 /* --- анимация «разбор готовится» --- */
-.dc-prep{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+.dc-prep{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;
   background:radial-gradient(circle at 50% 42%,var(--card,var(--mx-card,#FCF8F1)),var(--bg,var(--mx-bg,#F8F3EA)) 62%,var(--bg2,var(--mx-bg2,#EFE3D2)));
   opacity:0;animation:dc-prep-in .35s ease forwards}
 .dc-prep.dc-out{animation:dc-prep-out .55s ease forwards}

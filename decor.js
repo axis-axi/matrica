@@ -113,7 +113,7 @@ try{
       var dur = reduce ? 700 : 3000;
       var title = (document.body && document.body.getAttribute("data-prep")) || "Готовим ваш разбор";
       var d2 = document.getElementById("mxDate2");
-      if(resEl.id === "brResult") title = "Готовим разбор вашего личного бренда";
+      if(resEl.id === "brResult" || (location.pathname.indexOf("/brend/") >= 0)) title = "Готовим разбор вашего личного бренда";
       else if(resEl.id === "mxResult" && d2 && d2.value && d2.offsetParent !== null) title = "Готовим разбор вашей пары";
       var ov = document.createElement("div");
       ov.className = "dc-prep";
