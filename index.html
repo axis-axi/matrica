@@ -947,6 +947,14 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 .matrix-app .mx-pg-row small{display:block;font-size:12px;color:var(--mx-ink2);margin-top:3px;}
 .matrix-app .mx-pg-row b{font-family:var(--mx-serif);font-weight:600;color:var(--mx-wine);white-space:nowrap;}
 .matrix-app .mx-pg .mx-btn{margin-top:14px;}
+.matrix-app .mx-addon{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 28px;padding:24px 26px;background:linear-gradient(135deg,var(--mx-bg2),var(--mx-card));box-shadow:inset 0 0 0 1px var(--mx-gold);min-width:0;}
+.matrix-app .mx-addon-text{flex:1 1 320px;min-width:0;}
+.matrix-app .mx-addon-k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mx-gold-dp);margin-bottom:8px;}
+.matrix-app .mx-addon h3{font-size:22px;color:var(--mx-wine);margin-bottom:8px;}
+.matrix-app .mx-addon p{font-size:14px;line-height:1.6;color:var(--mx-ink);margin:0;}
+.matrix-app .mx-addon-buy{display:flex;flex-direction:column;align-items:flex-start;gap:12px;}
+.matrix-app .mx-addon-price{font-family:var(--mx-serif);font-size:30px;font-weight:600;color:var(--mx-wine);white-space:nowrap;}
+.matrix-app .mx-addon-price span{color:var(--mx-gold-dp);}
 .matrix-app .mx-pg-note{font-size:13px;color:var(--mx-ink2);margin-top:16px;}
 .matrix-app .mx-pg-note a{color:var(--mx-wine);}
 .matrix-app .mx-contacts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
@@ -1391,6 +1399,17 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
           <div class="mx-pg-row"><div>Полный разбор<small>PDF-разбор</small></div><b>999 ₽</b></div>
           <div class="mx-pg-row"><div>Совместимость<small>PDF-разбор пары</small></div><b>999 ₽</b></div>
           <a class="mx-btn mx-btn-ghost" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Заказать разбор</a>
+        </div>
+        <div class="mx-addon">
+          <div class="mx-addon-text">
+            <div class="mx-addon-k">К любому текстовому разбору</div>
+            <h3>Плюс аудиоразбор вашего запроса</h3>
+            <p>В тексте вы видите свою матрицу. В аудио я разбираю ваш конкретный вопрос: что за ним стоит в ваших числах и в какую сторону двигаться. Слушать можно в удобное время и возвращаться к записи, когда нужно</p>
+          </div>
+          <div class="mx-addon-buy">
+            <div class="mx-addon-price"><span>+</span> 3 000 ₽</div>
+            <a class="mx-btn" href="https://t.me/nadyakuht" target="_blank" rel="noopener">Добавить аудиоразбор</a>
+          </div>
         </div>
         <div class="mx-pg">
           <h3>Марафоны</h3>
