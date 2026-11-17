@@ -976,6 +976,51 @@ html,body{background:#F7F1E8;color:#3A2A22;}
 .matrix-app .mx-gen button.is-on{background:var(--mx-wine);color:#fff;border-color:var(--mx-wine);}
 .matrix-app .mx-gen-err{margin-top:8px;}
 .matrix-app.is-pair .mx-gen,.matrix-app.is-pair .mx-gen-err{display:none;}
+/* ==== больше движения на главном сайте (отключается при prefers-reduced-motion) ==== */
+@media (prefers-reduced-motion:no-preference){
+  /* появление первого экрана */
+  .matrix-app .mx-hero > div:first-child > *{opacity:0;transform:translateY(16px);animation:dcm-up .9s cubic-bezier(.2,.7,.2,1) forwards;}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(1){animation-delay:.05s}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(2){animation-delay:.18s}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(3){animation-delay:.3s}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(4){animation-delay:.42s}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(5){animation-delay:.54s}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(6){animation-delay:.64s}
+  .matrix-app .mx-hero > div:first-child > *:nth-child(n+7){animation-delay:.74s}
+  @keyframes dcm-up{to{opacity:1;transform:none}}
+  /* аватар: мягкое парение и золотое свечение */
+  .matrix-app .mx-hero-duo{animation:dcm-fade 1.2s ease .2s both;}
+  @keyframes dcm-fade{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+  .matrix-app .mx-avatar{animation:dcm-float 8s ease-in-out infinite;}
+  @keyframes dcm-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .matrix-app .mx-duo-stage:before{content:"";position:absolute;inset:-6% -8% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(198,161,91,.32),rgba(198,161,91,0));z-index:-1;animation:dcm-glow 6s ease-in-out infinite;}
+  @keyframes dcm-glow{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+  /* медальон: медленное вращение золотого кольца и покачивание */
+  .matrix-app .mx-medal{animation:dcm-bob 7s ease-in-out infinite;}
+  @keyframes dcm-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  .matrix-app .mx-medal:before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px dashed rgba(198,161,91,.75);animation:dcm-spin 34s linear infinite;pointer-events:none;}
+  @keyframes dcm-spin{to{transform:rotate(360deg)}}
+  /* искры вокруг аватара */
+  .dcm-star{position:absolute;color:#C6A15B;font-size:14px;opacity:0;animation:dcm-tw 4.4s ease-in-out infinite;pointer-events:none;text-shadow:0 0 10px rgba(198,161,91,.8);}
+  @keyframes dcm-tw{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(45deg)}}
+  /* блеск на кнопках */
+  .matrix-app .mx-btn{position:relative;overflow:hidden;}
+  .matrix-app .mx-btn:not(.mx-btn-ghost):after{content:"";position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-20deg);animation:dcm-shine 6s ease-in-out infinite;pointer-events:none;}
+  @keyframes dcm-shine{0%,68%{left:-70%}100%{left:140%}}
+  /* карточки приподнимаются */
+  .matrix-app .mx-card,.matrix-app .mx-feat,.matrix-app .mx-pg,.matrix-app .mx-addon,.matrix-app .mx-tile{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease;}
+  .matrix-app .mx-card:hover,.matrix-app .mx-feat:hover,.matrix-app .mx-pg:hover,.matrix-app .mx-tile:hover{transform:translateY(-4px);box-shadow:0 26px 44px -26px rgba(94,26,30,.4);}
+  /* появление блоков при прокрутке */
+  .dcm-rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);}
+  .dcm-rv.dcm-in{opacity:1;transform:none;}
+  /* золотая линия под заголовками прорисовывается */
+  .matrix-app .mx-rule{transform-origin:left center;}
+  .dcm-rv .mx-rule,.dcm-rv.mx-rule{transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.7,.2,1) .25s;}
+  .dcm-in .mx-rule,.dcm-in.mx-rule{transform:none;}
+  /* цифры в дисках слегка пульсируют */
+  .matrix-app .mx-me-disc,.matrix-app .mx-card-num{animation:dcm-pulse 4.5s ease-in-out infinite 1.2s;}
+  @keyframes dcm-pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,161,91,0)}50%{box-shadow:0 0 0 12px rgba(198,161,91,.16)}}
+}
 </style>
 <link rel="stylesheet" href="/decor-prep.css">
 </head>
@@ -2147,6 +2192,41 @@ document.addEventListener('keydown', function(e){
   if(id === 'mxDate' && pairNow()) return;
   if(need()){ e.preventDefault(); e.stopImmediatePropagation(); }
 }, true);
+})();
+</script>
+<script>
+/* ==== движение на главном сайте: искры вокруг аватара и появление блоков при прокрутке ==== */
+(function(){
+"use strict";
+try{
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce) return;
+  var stage = document.querySelector(".mx-duo-stage");
+  if(stage){
+    var pts = [[6,8],[88,4],[96,40],[-4,46],[92,74],[12,92],[50,-2],[74,96]];
+    pts.forEach(function(p, i){
+      var s = document.createElement("i");
+      s.className = "dcm-star";
+      s.textContent = i % 2 ? "\u2726" : "\u2727";
+      s.style.left = p[0] + "%"; s.style.top = p[1] + "%";
+      s.style.animationDelay = (i * 0.55).toFixed(2) + "s";
+      s.style.fontSize = (11 + (i % 3) * 4) + "px";
+      stage.appendChild(s);
+    });
+  }
+  if(!("IntersectionObserver" in window)) return;
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("dcm-in"); io.unobserve(e.target); } });
+  }, {rootMargin:"0px 0px -10% 0px", threshold:.08});
+  var sel = ".mx-sec-h, .mx-feat, .mx-pg, .mx-addon, .mx-club, .mx-tile, .mx-card, .mx-offer";
+  [].forEach.call(document.querySelectorAll(sel), function(el){
+    if(el.closest(".mx-result") && !el.closest(".mx-result.is-on")) return;
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight * 0.9 && r.bottom > 0) return;
+    el.classList.add("dcm-rv"); io.observe(el);
+  });
+  setTimeout(function(){ [].forEach.call(document.querySelectorAll(".dcm-rv:not(.dcm-in)"), function(el){ if(el.getBoundingClientRect().top < window.innerHeight * 1.5) el.classList.add("dcm-in"); }); }, 4000);
+}catch(e){ if(window.console) console.warn("dcm", e); }
 })();
 </script>
 <script src="/cookie-consent.js" defer></script>
