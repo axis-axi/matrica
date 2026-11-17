@@ -993,6 +993,14 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
 @media (max-width:640px){ .matrix-app .mx-block{margin-top:54px;} }
 
 
+/* ==== выбор пола: показываем человеку только его трактовки ==== */
+.matrix-app .mx-gen{display:inline-flex;align-items:center;gap:0;margin-top:16px;font-size:12px;color:var(--mx-ink);}
+.matrix-app .mx-gen span{margin-right:12px;letter-spacing:.2em;text-transform:uppercase;font-size:10px;color:var(--mx-gold-dp);}
+.matrix-app .mx-gen button{font-family:var(--mx-sans);font-size:12px;padding:9px 18px;border:1px solid var(--mx-line);background:transparent;color:var(--mx-ink);cursor:pointer;}
+.matrix-app .mx-gen button + button{margin-left:-1px;}
+.matrix-app .mx-gen button.is-on{background:var(--mx-wine);color:#fff;border-color:var(--mx-wine);}
+.matrix-app .mx-gen-err{margin-top:8px;}
+.matrix-app.is-pair .mx-gen,.matrix-app.is-pair .mx-gen-err{display:none;}
 /* ==== вкладка Деньги: бесплатный денежный код ==== */
 .matrix-app .mx-dg-only{display:none;}
 .matrix-app.is-dengi .mx-dg-only{display:block;}
@@ -1095,6 +1103,12 @@ html,body{margin:0;padding:0;background:#F7F1E8;}
           <button type="button" class="mx-tab mx-tab-br">Личный бренд</button>
           <button type="button" class="mx-tab mx-tab-dg">Деньги</button>
         </div>
+        <div class="mx-gen" id="mxGen" role="group" aria-label="Пол">
+          <span>Я</span>
+          <button type="button" data-g="f">Женщина</button>
+          <button type="button" data-g="m">Мужчина</button>
+        </div>
+        <div class="mx-err mx-gen-err" id="mxGenErr" role="alert"></div>
 
         <div class="mx-form">
           <div class="mx-fieldwrap">
@@ -2218,7 +2232,7 @@ var WEEKDAYS=['воскресенье','понедельник','вторник'
    Так их можно править, не трогая расчёт, и каждый блок влезает в лимит Tilda. */
 var ARCANA = window.MX_ARCANA || {};
 var ARCANA_DRAFT = !!window.MX_ARCANA_DRAFT;
-function arcana(num){ return ARCANA[num] || {n:'Аркан ' + num, s:'', a:'', p:''}; }
+function arcana(num){ var a = ARCANA[num] || {n:'Аркан ' + num, s:'', a:'', p:''}; return window.MX_GF ? window.MX_GF(a) : a; }
 
 /* Какое предназначение работает у человека прямо сейчас.
    По вашей методичке предназначение включается в 20 лет: до этого
@@ -3018,6 +3032,69 @@ $('dgAgain').addEventListener('click', function(){
   res.classList.remove('is-on'); input.value = ''; input.focus();
   window.scrollTo({top: $('mx-calc').getBoundingClientRect().top + window.pageYOffset - 20, behavior: 'smooth'});
 });
+})();
+</script>
+<script>
+/* ==== Разделение по полу в бесплатных калькуляторах: человек видит только свои трактовки ==== */
+(function(){
+"use strict";
+window.MX_GENDER = null;
+var FP = [["быть ответственным","быть ответственной"],["быть обеспеченным","быть обеспеченной"],["быть признанным","быть признанной"],["быть справедливым","быть справедливой"],["быть идеальным","быть идеальной"],["быть естественным","быть естественной"],["быть честным","быть честной"],["быть активным","быть активной"],["быть терпимым","быть терпимой"],["быть счастливым","быть счастливой"],["быть полезным","быть полезной"],["стать щедрым","стать щедрой"],["быть щедрым","быть щедрой"],["стать духовным","стать духовной"],["быть духовным","быть духовной"],["стать востребованным","стать востребованной"],["быть успешным","быть успешной"],["быть первым","быть первой"],["быть гостеприимным","быть гостеприимной"],["быть свободным","быть свободной"],["быть готовым","быть готовой"],["быть весёлым","быть весёлой"],["себя несвободным","себя несвободной"],["себя свободным","себя свободной"],["быть хозяином своей","быть хозяйкой своей"],["быть проводником знаний","быть проводницей знаний"],["вы проводник знаний","вы проводница знаний"],["быть счастливчиком","быть счастливицей"]];
+var MP = [["быть заметной","быть заметным"]];
+function fix(t, g){ (g === 'f' ? FP : MP).forEach(function(p){ t = t.split(p[0]).join(p[1]); }); return t; }
+function keep(t, g){
+  var other = g === 'f' ? /^(Для мужчины|Мужчине|Мужчина |Мужчин)/ : /^(Для женщины|Женщине|Женщина |Женщин)/;
+  return t.split(/(?<=[.!?…])\s+/).filter(function(x){ return !other.test(x); }).join(' ');
+}
+window.MX_GF = function(A){
+  var g = window.MX_GENDER, app = document.getElementById('matrixApp');
+  if(!g || !A || (app && app.classList.contains('is-pair'))) return A;
+  var o = {};
+  for(var k in A){
+    var v = A[k];
+    if(typeof v === 'string') o[k] = fix(v, g);
+    else if(Array.isArray(v)){
+      var out = [];
+      v.forEach(function(t){
+        if(typeof t !== 'string'){ out.push(t); return; }
+        var r = keep(t, g);
+        if(r) out.push(fix(r, g));
+      });
+      o[k] = out;
+    } else o[k] = v;
+  }
+  return o;
+};
+var app = document.getElementById('matrixApp'), box = document.getElementById('mxGen'), msg = document.getElementById('mxGenErr');
+if(!app || !box) return;
+function btns(){ return box.querySelectorAll('button[data-g]'); }
+Array.prototype.forEach.call(btns(), function(b){
+  b.addEventListener('click', function(){
+    window.MX_GENDER = b.getAttribute('data-g');
+    Array.prototype.forEach.call(btns(), function(x){ x.classList.toggle('is-on', x === b); });
+    msg.textContent = '';
+    ['mxResult', 'brResult', 'dgResult'].forEach(function(id){ var r = document.getElementById(id); if(r) r.classList.remove('is-on'); });
+  });
+});
+function need(){
+  if(window.MX_GENDER) return false;
+  msg.textContent = 'Выберите, женщина вы или мужчина: от этого зависят трактовки';
+  return true;
+}
+function pairNow(){ return app.classList.contains('is-pair'); }
+document.addEventListener('click', function(e){
+  var t = e.target && e.target.closest ? e.target.closest('#mxGo, #brGo, #dgGo') : null;
+  if(!t) return;
+  if(t.id === 'mxGo' && pairNow()) return;
+  if(need()){ e.preventDefault(); e.stopImmediatePropagation(); }
+}, true);
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+  var id = e.target && e.target.id;
+  if(id !== 'mxDate' && id !== 'brDate' && id !== 'dgDate') return;
+  if(id === 'mxDate' && pairNow()) return;
+  if(need()){ e.preventDefault(); e.stopImmediatePropagation(); }
+}, true);
 })();
 </script>
 <script src="/cookie-consent.js" defer></script>
